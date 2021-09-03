@@ -16,6 +16,7 @@ class CreateClientStatusesTable extends Migration
         Schema::create('client_statuses', function (Blueprint $table) {
             $table->id();
             $table->string('name')->index();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

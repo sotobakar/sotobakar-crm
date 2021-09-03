@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ClientStatus extends Model
+class TaskStatus extends Model
 {
     use SoftDeletes, HasFactory;
 
@@ -16,6 +16,6 @@ class ClientStatus extends Model
      * @var string[]
      */
     protected $fillable = [
-        'name'
+        'name',
     ];
 }
