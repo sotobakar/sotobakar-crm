@@ -18,4 +18,20 @@ class Task extends Model
     protected $fillable = [
         'name', 'project_id', 'task_status_id', 'description'
     ];
+
+    /**
+     * Get the status of the task.
+     */
+    public function status()
+    {
+        return $this->belongsTo(TaskStatus::class);
+    }
+
+    /**
+     * Get the project of the project.
+     */
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
 }

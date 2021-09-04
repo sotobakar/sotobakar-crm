@@ -18,4 +18,36 @@ class Client extends Model
     protected $fillable = [
         'first_name', 'middle_name', 'last_name', 'phone_number', 'client_type_id', 'client_status_id', 'title', 'address', 'description', 'email',
     ];
+
+    /**
+     * Get the type of the client.
+     */
+    public function clientType()
+    {
+        return $this->belongsTo(ClientType::class);
+    }
+
+    /**
+     * Get the status of the client.
+     */
+    public function clientStatus()
+    {
+        return $this->belongsTo(ClientStatus::class);
+    }
+
+    /**
+     * Get the opportunities of the client.
+     */
+    public function opportunities()
+    {
+        return $this->hasMany(Opportunity::class);
+    }
+
+    /**
+     * Get the projects of the client.
+     */
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
 }

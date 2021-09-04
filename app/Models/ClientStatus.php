@@ -18,4 +18,12 @@ class ClientStatus extends Model
     protected $fillable = [
         'name'
     ];
+
+    /**
+     * Get the clients of the status.
+     */
+    public function clients()
+    {
+        return $this->hasMany(Client::class);
+    }
 }

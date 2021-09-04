@@ -18,4 +18,12 @@ class ProjectStatus extends Model
     protected $fillable = [
         'name'
     ];
+
+    /**
+     * Get the projects of the status.
+     */
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
 }

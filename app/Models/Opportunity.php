@@ -18,4 +18,20 @@ class Opportunity extends Model
     protected $fillable = [
         'name', 'client_id', 'description',
     ];
+
+    /**
+     * Get the status of the opportunity.
+     */
+    public function status()
+    {
+        return $this->belongsTo(OpportunityStatus::class);
+    }
+
+    /**
+     * Get the client of the opportunity.
+     */
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
 }

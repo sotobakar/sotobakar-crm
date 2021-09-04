@@ -18,4 +18,12 @@ class OpportunityStatus extends Model
     protected $fillable = [
         'name'
     ];
+
+    /**
+     * Get the opportunities of the status.
+     */
+    public function opportunities()
+    {
+        return $this->hasMany(Opportunity::class);
+    }
 }
