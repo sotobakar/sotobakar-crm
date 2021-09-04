@@ -22,7 +22,23 @@ class ProjectFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->sentence(),
+            'description' => $this->faker->paragraphs(3, true),
+            'completed_at' => null,
         ];
+    }
+
+    /**
+     * Indicate that the project is completed.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function completed()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'completed_at' => now(),
+            ];
+        });
     }
 }

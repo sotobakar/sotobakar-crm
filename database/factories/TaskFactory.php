@@ -22,7 +22,23 @@ class TaskFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->sentence(),
+            'description' => $this->faker->paragraph(),
+            'completed_at' => null,
         ];
+    }
+
+    /**
+     * Indicate that the task is completed.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function completed()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'completed_at' => now(),
+            ];
+        });
     }
 }
