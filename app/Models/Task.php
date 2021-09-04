@@ -22,7 +22,7 @@ class Task extends Model
     /**
      * Get the status of the task.
      */
-    public function status()
+    public function taskStatus()
     {
         return $this->belongsTo(TaskStatus::class);
     }
