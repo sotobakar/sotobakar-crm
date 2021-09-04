@@ -19,7 +19,7 @@ class CreateProjectsTable extends Migration
             $table->foreignId('client_id')->constrained()->onDelete('cascade');
             $table->foreignId('project_status_id')->constrained()->onDelete('cascade');
             $table->text('description');
-            $table->dateTime('completed_at');
+            $table->dateTime('completed_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
             $table->index(['created_at', 'updated_at']);

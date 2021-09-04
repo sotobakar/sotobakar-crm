@@ -19,6 +19,7 @@ class CreateTasksTable extends Migration
             $table->foreignId('project_id')->constrained()->onDelete('cascade');
             $table->foreignId('task_status_id')->constrained()->onDelete('cascade');
             $table->text('description');
+            $table->dateTime('completed_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
             $table->index(['created_at', 'updated_at']);
