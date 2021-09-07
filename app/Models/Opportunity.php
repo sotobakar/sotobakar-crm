@@ -16,13 +16,13 @@ class Opportunity extends Model
      * @var string[]
      */
     protected $fillable = [
-        'name', 'client_id', 'description',
+        'name', 'client_id', 'opportunity_status_id', 'description',
     ];
 
     /**
      * Get the status of the opportunity.
      */
-    public function status()
+    public function opportunityStatus()
     {
         return $this->belongsTo(OpportunityStatus::class);
     }
