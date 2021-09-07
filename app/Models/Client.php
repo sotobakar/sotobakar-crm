@@ -12,6 +12,13 @@ class Client extends Model
     use SoftDeletes, HasFactory;
 
     /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['clientType', 'clientStatus'];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var string[]
@@ -19,6 +26,19 @@ class Client extends Model
     protected $fillable = [
         'first_name', 'middle_name', 'last_name', 'phone_number', 'client_type_id', 'client_status_id', 'title', 'address', 'description', 'email',
     ];
+
+    /**
+     * Get the user's full name.
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        if (is_null($this->middle_name)) {
+            return "{$this->first_name} {$this->last_name}";
+        }
+        return "{$this->first_name} {$this->middle_name} {$this->last_name}";
+    }
 
     /**
      * Get the type of the client.
