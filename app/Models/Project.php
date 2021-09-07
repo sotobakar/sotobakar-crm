@@ -12,13 +12,6 @@ class Project extends Model
     use SoftDeletes, HasFactory;
 
     /**
-     * The relationships that should always be loaded.
-     *
-     * @var array
-     */
-    protected $with = ['client', 'projectStatus'];
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var string[]

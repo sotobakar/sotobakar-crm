@@ -19,7 +19,7 @@ class ProjectResource extends JsonResource
             'name' => $this->name,
             'client' => new ClientResource($this->whenLoaded('client')),
             'project_status' => new ProjectStatusResource($this->whenLoaded('projectStatus')),
-            'description' => $this->description,
+            'description' => $this->when($this->description !== null, $this->description),
             'completed_at' => $this->completed_at
         ];
     }

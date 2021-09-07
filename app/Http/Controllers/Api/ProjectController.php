@@ -7,6 +7,7 @@ use App\Http\Requests\Api\StoreProjectRequest;
 use App\Http\Requests\Api\UpdateProjectRequest;
 use App\Http\Resources\ProjectResource;
 use App\Models\Project;
+use App\Models\ProjectStatus;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -28,7 +29,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return ProjectResource::collection(Project::all());
+        return ProjectResource::collection(Project::with(['client', 'projectStatus'])->get());
     }
 
     /**
@@ -50,7 +51,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        return new ProjectResource($project);
+        return new ProjectResource($project->load(['client', 'projectStatus']));
     }
 
     /**
@@ -62,9 +63,10 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        $project->update($request->validated());
+        $data = $request->validated();
+        $project->update($data);
 
-        return (new ProjectResource($project->refresh()))->additional(['message' => 'Project updated successfully']);
+        return (new ProjectResource($project->refresh()->load(['projectStatus'])))->additional(['message' => 'Project updated successfully']);
     }
 
     /**
