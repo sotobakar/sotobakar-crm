@@ -17,6 +17,7 @@ class CreateOpportunitiesTable extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('client_id')->constrained()->onDelete('cascade');
+            $table->foreignId('opportunity_status_id')->constrained()->onDelete('cascade');
             $table->text('description');
             $table->softDeletes();
             $table->timestamps();
