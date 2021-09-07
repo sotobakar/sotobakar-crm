@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\ClientController;
+use App\Http\Controllers\Api\OpportunityController;
 use App\Http\Controllers\Api\ProjectController;
+use App\Http\Controllers\Api\TaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +23,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
     Route::resource('clients', ClientController::class)->except(['create', 'edit']);
     Route::resource('projects', ProjectController::class)->except(['create', 'edit']);
+    Route::resource('opportunities', OpportunityController::class)->except(['create', 'edit']);
+    Route::resource('projects.tasks', TaskController::class)->shallow()->except(['create', 'edit']);
 });
 
 Route::post('login', [AuthController::class, 'login']);
