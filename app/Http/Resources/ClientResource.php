@@ -25,7 +25,8 @@ class ClientResource extends JsonResource
             'client_type' => new ClientTypeResource($this->whenLoaded('clientType')),
             'title' => $this->title,
             'address' => $this->address,
-            'description' => $this->description
+            'description' => $this->description,
+            'image' => $this->getFirstMediaUrl('client') ?: null,
         ];
     }
 }

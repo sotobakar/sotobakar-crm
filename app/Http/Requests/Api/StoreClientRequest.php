@@ -33,7 +33,8 @@ class StoreClientRequest extends FormRequest
             'client_status_id' => 'exists:client_statuses,id',
             'title' => 'string|max:255',
             'address' => 'required|string',
-            'description' => 'string'
+            'description' => 'string',
+            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048'
         ];
     }
 }

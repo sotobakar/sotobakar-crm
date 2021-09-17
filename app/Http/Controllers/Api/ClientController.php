@@ -8,6 +8,7 @@ use App\Http\Requests\Api\UpdateClientRequest;
 use App\Http\Resources\ClientResource;
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ClientController extends Controller
 {
@@ -41,6 +42,11 @@ class ClientController extends Controller
     {
         $client = Client::create($request->validated());
 
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $name = Str::uuid() . '.' . $request->file('image')->extension();
+            $client->addMediaFromRequest('image')->usingFileName($name)->toMediaCollection('client', 'public');
+        }
+
         return (new ClientResource($client))->additional(['message' => 'Client created successfully']);
     }
 
@@ -65,6 +71,12 @@ class ClientController extends Controller
     public function update(UpdateClientRequest $request, Client $client)
     {
         $client->update($request->validated());
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $client->clearMediaCollection('client');
+            $name = Str::uuid() . '.' . $request->file('image')->extension();
+            $client->addMediaFromRequest('image')->usingFileName($name)->toMediaCollection('client', 'public');
+        }
 
         return (new ClientResource($client->refresh()))->additional(['message' => 'Client updated successfully']);
     }
